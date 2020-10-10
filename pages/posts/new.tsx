@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Link from 'next/link';
 
 import { createPost } from '../../redux/store/store';
+import { Footer } from '../../components/Footer/Footer';
+import { Navbar } from '../../components/Navbar/Navbar';
+import { Form, FormInput, Button, FormContainer } from '../../components/Forms/Forms.elements';
 
 export default function CreatePost(): JSX.Element {
     const [title, setTitle] = useState('');
@@ -14,29 +16,19 @@ export default function CreatePost(): JSX.Element {
         setBody('');
         setTitle('');
     };
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
+    const handleBodyChange = (e: React.ChangeEvent<HTMLInputElement>) => setBody(e.target.value);
     return (
         <>
-            <div>Create new post here</div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        value={title}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="title">Body</label>
-                    <input
-                        value={body}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBody(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Create new post</button>
-            </form>
-            <Link href="/">
-                <a>Back to home</a>
-            </Link>
+            <Navbar />
+            <FormContainer>
+                <Form>
+                    <FormInput placeholder="Title of the post" value={title} onChange={handleTitleChange} />
+                    <FormInput placeholder="Content of the post" value={body} onChange={handleBodyChange} />
+                    <Button onClick={handleSubmit}>Post</Button>
+                </Form>
+            </FormContainer>
+            <Footer />
         </>
     );
 }

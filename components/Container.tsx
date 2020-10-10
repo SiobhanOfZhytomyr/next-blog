@@ -1,15 +1,16 @@
 import { Posts } from '../lib/types';
 import { Highlight } from './Highlight';
+import { List, ListItem } from './commonStyles';
 export function Container(props: { posts: Posts }): JSX.Element {
     return (
         <div>
-            <ul style={{ listStyle: 'none' }}>
+            <List>
                 {props.posts.map((post) => (
-                    <li key={post.id}>
+                    <ListItem key={post.id}>
                         <Highlight id={post.id} body={post.body} title={post.title} comments={post.comments} />
-                    </li>
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
         </div>
     );
 }

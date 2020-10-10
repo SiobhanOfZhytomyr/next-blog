@@ -5,6 +5,8 @@ import { Container } from '../components/Container';
 import { getAllPosts, State } from '../redux/store/store';
 import { getPosts } from '../lib/api';
 import { Posts } from '../lib/types';
+import {Navbar} from '../components/Navbar/Navbar'
+import {Footer} from '../components/Footer/Footer'
 
 
 function HomePage(props: { data: Posts }): JSX.Element {
@@ -18,10 +20,9 @@ function HomePage(props: { data: Posts }): JSX.Element {
     }, []);
     return (
         <div>
-            <Link href="/posts/new">
-                <a>Create new post</a>
-            </Link>
+            <Navbar />
             <Container posts={props.data} />
+            <Footer />
         </div>
     );
 }

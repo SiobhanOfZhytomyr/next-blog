@@ -1,17 +1,16 @@
-import { PostType } from '../lib/types';
 import Link from 'next/link';
 
+import { PostType } from '../lib/types';
+import { Container, Header, Link as StyledLink } from './commonStyles';
 export function Highlight(post: PostType): JSX.Element {
     return (
-        <div>
-            <h1>
-                {post.title}, id - {post.id}
-            </h1>
-            <h2>
+        <Container>
+            <Header>{post.title}</Header>
+            <Header>
                 <Link href={`/posts/${post.id}`}>
-                    <a>Explore</a>
+                    <StyledLink>Explore</StyledLink>
                 </Link>
-            </h2>
-        </div>
+            </Header>
+        </Container>
     );
 }
