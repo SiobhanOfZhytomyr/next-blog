@@ -1,31 +1,16 @@
 import { useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { createPost } from "../../redux/store/store";
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
+  const dispatch = useDispatch();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const postData = async () => {
-      try {
-        const res = await axios({
-          method: "POST",
-          url: "https://simple-blog-api.crew.red/posts",
-          data: {
-            title,
-            body,
-          },
-        });
-        console.log(res);
-        setBody("");
-        setTitle("");
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    postData();
+    dispatch(createPost({ title, body }));
+    setBody("");
+    setTitle("");
   };
   return (
     <>

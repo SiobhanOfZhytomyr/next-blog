@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Posts } from "./types";
-import { Ids, RawComment } from "./types";
+import { Ids, RawComment, RawPost } from "./types";
+
 export const getPosts = async () => {
   const res = await axios.get(`https://simple-blog-api.crew.red/posts`);
   const ids: Ids = res.data.map((post) => post.id);
@@ -25,5 +26,15 @@ export const postComment = (comment: RawComment) => {
     data: {
       ...comment,
     },
-  }).then(res => res.data);
+  }).then((res) => res.data);
+};
+
+export const postPost = (post: RawPost) => {
+  return axios({
+    method: "POST",
+    url: "https://simple-blog-api.crew.red/posts",
+    data: {
+      ...post,
+    },
+  }).then((res) => res.data);
 };

@@ -1,8 +1,8 @@
 export type RawComment = { postId: number; body: string };
 export type Comment = RawComment & { id: number };
-export type PostType = {
-  title: string;
-  body: string;
+export type RawPost = {  title: string;
+  body: string;}
+export type PostType = RawPost & {
   id: number;
   comments: Comment[];
 };
